@@ -5,14 +5,14 @@
 package pnlgui
 
 import (
-	"image/color"
-	"log"
-	"reflect"
+	// "image/color"
+	// "log"
+	// "reflect"
 
-	"github.com/goki/gi/gi"
+	// "github.com/goki/gi/gi"
 	"github.com/goki/gi/svg"
-	"github.com/goki/gi/giv"
-	"github.com/goki/gi/units"
+	// "github.com/goki/gi/giv"
+	// "github.com/goki/gi/units"
 	"github.com/goki/ki/ki"
 	"github.com/goki/ki/kit"
 )
@@ -36,9 +36,9 @@ func AddNewComponent(parent ki.Ki, name string) *Component {
 var AllComponents Component 
 
 func init(){
-	AddNewComponent(AllComponents, "TransferMechanism")
-	AddNewComponent(AllComponents, "ProcessingMechanism")
-	AddNewComponent(AllComponents, "IntegratorMechanism")
+	AddNewComponent(&AllComponents, "TransferMechanism")
+	AddNewComponent(&AllComponents, "ProcessingMechanism")
+	AddNewComponent(&AllComponents, "IntegratorMechanism")
 }
 /////////////////////////////////////////////////////////////////////////////
 //  ComponentView

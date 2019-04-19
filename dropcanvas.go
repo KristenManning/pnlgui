@@ -5,16 +5,18 @@
 package pnlgui
 
 import (
-	"image/color"
-	"log"
-	"reflect"
+	// "image/color"
+	// "log"
+	// "reflect"
 
-	"github.com/goki/gi/gi"
+	// "github.com/goki/gi/gi"
 	"github.com/goki/gi/svg"
-	"github.com/goki/gi/giv"
-	"github.com/goki/gi/units"
-	"github.com/goki/ki/ki"
-	"github.com/goki/ki/kit"
+	"github.com/goki/gi/oswin/mimedata"
+	"github.com/goki/gi/oswin/dnd"
+	// "github.com/goki/gi/giv"
+	// "github.com/goki/gi/units"
+	// "github.com/goki/ki/ki"
+	// "github.com/goki/ki/kit"
 )
 
 /////////////////////////////////////////////////////////////////////////////
@@ -28,7 +30,7 @@ type DropCanvas struct {
 // Drop pops up a menu to determine what specifically to do with dropped items
 // satisfies gi.DragNDropper interface and can be overridden by subtypes
 func (dc *DropCanvas) Drop(md mimedata.Mimes, mod dnd.DropMods) {
-	comp := AddNewComponent(dc, "new")
+	comp := AddNewComponentView(dc, "new")
 	comp.Pos.Y = len(dc.Kids)*100 
 	comp.Size.X = 50
 	comp.Size.Y = 50 

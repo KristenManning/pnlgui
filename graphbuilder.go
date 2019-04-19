@@ -5,13 +5,13 @@
 package pnlgui
 
 import (
-	"image/color"
-	"log"
-	"reflect"
+	// "image/color"
+	// "log"
+	// "reflect"
 
 	"github.com/goki/gi/gi"
 	"github.com/goki/gi/giv"
-	"github.com/goki/gi/units"
+	// "github.com/goki/gi/units"
 	"github.com/goki/ki/ki"
 	"github.com/goki/ki/kit"
 )
@@ -23,9 +23,9 @@ import (
 type GraphBuilder struct {
 	gi.Frame
 	Components   giv.TreeView  `desc:"the component that we view"`
-	NumView ValueView `desc:"inline struct view of the numbers"`
-	TmpSave ValueView `json:"-" xml:"-" desc:"value view that needs to have SaveTmp called on it whenever a change is made to one of the underlying values -- pass this down to any sub-views created from a parent"`
-	ViewSig ki.Signal `json:"-" xml:"-" desc:"signal for valueview -- only one signal sent when a value has been set -- all related value views interconnect with each other to update when others update"`
+	// NumView ValueView `desc:"inline struct view of the numbers"`
+	// TmpSave ValueView `json:"-" xml:"-" desc:"value view that needs to have SaveTmp called on it whenever a change is made to one of the underlying values -- pass this down to any sub-views created from a parent"`
+	// ViewSig ki.Signal `json:"-" xml:"-" desc:"signal for valueview -- only one signal sent when a value has been set -- all related value views interconnect with each other to update when others update"`
 }
 
 var KiT_GraphBuilder = kit.Types.AddType(&GraphBuilder{}, GraphBuilderProps)
@@ -41,17 +41,17 @@ var GraphBuilderProps = ki.Props{
 }
 
 // Config configures a standard setup of entire view
-func (cv *GraphBuilder) Config() {
-	cv.Lay = gi.LayoutHoriz
-	cv.SetProp("spacing", gi.StdDialogVSpaceUnits)
-	config := cv.StdFrameConfig()
-	mods, updt := cv.ConfigChildren(config, false)
+func (gb *GraphBuilder) Config() {
+	gb.Lay = gi.LayoutHoriz
+	gb.SetProp("spacing", gi.StdDialogVSpaceUnits)
+	config := gb.StdFrameConfig()
+	mods, updt := gb.ConfigChildren(config, false)
 	if mods {
-		cv.ConfigComponents()
+		gb.ConfigComponents()
 	} else {
-		updt = cv.UpdateStart()
+		updt = gb.UpdateStart()
 	}
-	cv.UpdateEnd(updt)
+	gb.UpdateEnd(updt)
 }
 
 // SliderLayConfig configures the sliders layout
