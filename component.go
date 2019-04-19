@@ -33,13 +33,15 @@ func AddNewComponent(parent ki.Ki, name string) *Component {
 	return parent.AddNewChild(KiT_Component, name).(*Component)
 }
 
-var AllComponents Component 
+var AllComponents Component
 
-func init(){
+func init() {
+	AllComponents.InitName(&AllComponents, "AllComponents")
 	AddNewComponent(&AllComponents, "TransferMechanism")
 	AddNewComponent(&AllComponents, "ProcessingMechanism")
 	AddNewComponent(&AllComponents, "IntegratorMechanism")
 }
+
 /////////////////////////////////////////////////////////////////////////////
 //  ComponentView
 

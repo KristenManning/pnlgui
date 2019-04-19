@@ -5,17 +5,20 @@
 package main
 
 import (
-	// "fmt"
-	// "reflect"
-
-	// "github.com/goki/gi/gi"
-	// "github.com/goki/gi/gimain"
-	// "github.com/goki/gi/giv"
-	// "github.com/goki/gi/units"
-	// "github.com/goki/ki/ki"
-	// "github.com/goki/ki/kit"
 	"github.com/KristenManning/pnlgui"
+	"github.com/goki/gi/gi"
+	"github.com/goki/gi/gimain"
 )
+
+// "fmt"
+// "reflect"
+
+// "github.com/goki/gi/gi"
+// "github.com/goki/gi/gimain"
+// "github.com/goki/gi/giv"
+// "github.com/goki/gi/units"
+// "github.com/goki/ki/ki"
+// "github.com/goki/ki/kit"
 
 func main() {
 	gimain.Main(func() {
@@ -44,7 +47,7 @@ func mainrun() {
 
 	mfr := win.SetMainFrame()
 
-	gb := psyneulink-gui.AddNewGraphBuilder(mfr, "graph-builder")
+	gb := pnlgui.AddNewGraphBuilder(mfr, "graph-builder")
 	gb.Config()
 
 	// vp.UpdateEnd(updt)
