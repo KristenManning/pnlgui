@@ -47,11 +47,13 @@ var DropCanvasProps = ki.Props{
 func (dc *DropCanvas) Drop(md mimedata.Mimes, mod dnd.DropMods) {
 	fmt.Printf("in dropcanvas drop\n")
 	comp := AddNewComponentView(dc, "new")
+	updt := dc.UpdateStart()
 	comp.Pos.Y = float32(len(dc.Kids) * 100)
 	// comp.Pos.Y = 50
 	comp.Size.X = 50
 	comp.Size.Y = 50
 	dc.DragNDropFinalize(mod)
+	dc.UpdateEnd(updt)
 }
 
 // DragNDropTarget handles a drag-n-drop onto this node
