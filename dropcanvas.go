@@ -12,6 +12,7 @@ import (
 	"fmt"
 
 	"github.com/goki/gi/gi"
+	"github.com/goki/gi/oswin"
 	"github.com/goki/gi/oswin/dnd"
 	"github.com/goki/gi/oswin/mimedata"
 	"github.com/goki/gi/svg"
@@ -75,4 +76,40 @@ func (dc *DropCanvas) DragNDropFinalize(mod dnd.DropMods) {
 		return
 	}
 	dc.Viewport.Win.FinalizeDragNDrop(mod)
+}
+
+// DropCanvasEvents: this is key for processing DND events
+func (dc *DropCanvas) DropCanvasEvents() {
+	dc.ConnectEvent(oswin.DNDEvent, gi.RegPri, func(recv, send ki.Ki, sig int64, d interface{}) {
+		if recv == nil {
+			return
+		}
+		de := d.(*dnd.Event)
+		dcc := recv.Embed(KiT_DropCanvas).(*DropCanvas)
+		switch de.Action {
+		case dnd.Start:
+		case dnd.DropOnTarget:
+			dcc.DragNDropTarget(de)
+		case dnd.DropFmSource:
+		}
+	})
+	dc.ConnectEvent(oswin.DNDFocusEvent, gi.RegPri, func(recv, send ki.Ki, sig int64, d interface{}) {
+		if recv == nil {
+			return
+		}
+		de := d.(*dnd.FocusEvent)
+		dcc := recv.Embed(KiT_DropCanvas).(*DropCanvas)
+		switch de.Action {
+		case dnd.Enter:
+			dcc.Viewport.Win.DNDSetCursor(de.Mod)
+		case dnd.Exit:
+			dcc.Viewport.Win.DNDNotCursor()
+		case dnd.Hover:
+		}
+	})
+}
+
+func (dc *DropCanvas) ConnectEvents2D() {
+	dc.EditorEvents()
+	dc.DropCanvasEvents()
 }

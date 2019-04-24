@@ -39,6 +39,8 @@ func AddNewGraphBuilder(parent ki.Ki, name string) *GraphBuilder {
 var GraphBuilderProps = ki.Props{
 	"background-color": &gi.Prefs.Colors.Background,
 	"color":            &gi.Prefs.Colors.Font,
+	"max-width":        -1, // needed for everything to stretch
+	"max-height":       -1,
 }
 
 // Config configures a standard setup of entire view
